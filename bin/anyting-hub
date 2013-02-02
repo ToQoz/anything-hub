@@ -3,7 +3,15 @@
 require "slop"
 argv = ARGV.dup
 slop = Slop.new(:strict => true, :help => true)
-slop.banner "$ anything-hub [options]"
+slop.on :s, :system_command=, 'system command name. eg. xdg-open, open (default is open)'
+slop.on :c, :cache=, 'use cache. yes or no. (default is yes)'
+slop.banner <<-BANNER
+$ anything-hub COMMANDS [OPTIONS]
+
+available COMMANDS are
+  starred:USER_NAME
+  search:SEARCH_KEYWORD
+BANNER
 
 begin
   slop.parse!(argv)
@@ -13,7 +21,11 @@ rescue => e
 end
 
 options = slop.to_hash
+if options[:help]
+  exit!
+end
 options.delete(:help)
+options[:s] ||= 'open'
 
 root = File.expand_path('../..', __FILE__)
 $LOAD_PATH.unshift root
@@ -21,4 +33,4 @@ $LOAD_PATH.unshift File.join(root, 'lib')
 
 require 'anything-hub'
 
-AnythingHub.run(options)
+AnythingHub.run(ARGV[0], options)

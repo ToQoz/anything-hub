@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = AnythingHub::VERSION
   gem.authors       = ["Takatoshi Matsumoto"]
   gem.email         = ["toqoz403@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Anything interface for github}
+  gem.summary       = %q{Anything interface for github. Filter response of Github api with anything interface and open selected one in browser.}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
@@ -17,7 +17,9 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
+  gem.add_dependency 'ruby-anything'
   gem.add_dependency 'slop'
+  gem.add_dependency 'octokit'
   gem.add_dependency 'activesupport'
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'vcr'

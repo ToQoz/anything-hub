@@ -1,0 +1,6 @@
+AnythingHub.configure do |c|
+  c.login "ToQoz"
+  c.password 'dummy'
+end
+
+# vim:set ft=ruby:
