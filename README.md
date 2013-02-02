@@ -1,4 +1,4 @@
-# Anything::Hub
+# AnythingHub
 
 TODO: Write a gem description
 

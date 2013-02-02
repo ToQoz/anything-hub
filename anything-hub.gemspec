@@ -5,7 +5,7 @@ require 'anything-hub/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "anything-hub"
-  gem.version       = Anything::Hub::VERSION
+  gem.version       = AnythingHub::VERSION
   gem.authors       = ["Takatoshi Matsumoto"]
   gem.email         = ["toqoz403@gmail.com"]
   gem.description   = %q{TODO: Write a gem description}
