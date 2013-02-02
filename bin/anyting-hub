@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require "slop"
+argv = ARGV.dup
+slop = Slop.new(:strict => true, :help => true)
+slop.banner "$ anything-hub [options]"
+
+begin
+  slop.parse!(argv)
+rescue => e
+  puts e
+  exit!
+end
+
+options = slop.to_hash
+options.delete(:help)
+
+root = File.expand_path('../..', __FILE__)
+$LOAD_PATH.unshift root
+$LOAD_PATH.unshift File.join(root, 'lib')
+
+require 'anything-hub'
+
+AnythingHub.run(options)
