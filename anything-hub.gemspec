@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["toqoz403@gmail.com"]
   gem.description   = %q{Anything interface for github}
   gem.summary       = %q{Anything interface for github. Filter response of Github api with anything interface and open selected one in browser.}
-  gem.homepage      = ""
+  gem.homepage      = "http://github.com/ToQoz/anything-hub"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
