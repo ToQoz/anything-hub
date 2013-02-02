@@ -7,24 +7,18 @@ require "anything-hub/version"
 module AnythingHub
   extend self
 
+  attr_accessor :options
+
   HOME_RC_FILE = '~/.anything-hubrc'
 
   def run(input, opts = {})
     init
+    self.options = opts
 
-    begin
-      unless opts[:cache] == "no"
-        urls = JSON.parse(cache.read(input))
-      end
-    rescue
+    if (results = command(input))
+      cache.write(input, results.to_json)
+      system("#{options[:s]} #{_anything_(results)}")
     end
-
-    unless urls
-      urls = command(input)
-      cache.write input, urls.to_json
-    end
-
-    system("#{opts[:s]} #{_anything_(urls)}")
   end
 
   def init

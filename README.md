@@ -56,6 +56,12 @@ If you machine don't have `open` command(OSX have it)
 $ anything-hub starred:ToQoz --system_command xdg-open
 ```
 
+If you want to do only cache
+
+```sh
+$ anything-hub cache:starred:ToQoz
+```
+
 ## Help
 ```sh
 ✘╹◡╹✘  $ anyting-hub --help
