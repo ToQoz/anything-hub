@@ -31,7 +31,6 @@ Put config file.
 
 ```ruby
 # in ~/.anything-hubrc
-```
 AnythingHub.configure do |c|
   c.login "username"    # github username
   c.password "password" # github password
