@@ -35,26 +35,17 @@ module AnythingHub
     @app_dir ||= dir
   end
 
-  def token_file
-    @token_file ||= File.join(app_dir, 'token')
-  end
-
   def token
-    unless File.exists?(token_file)
+    unless (_token = cache.read('authorizations').try(:[], 'token'))
       res = `curl \
-        --data '{"scopes":["repo"]}' \
-        --request POST -u '#{AnythingHub.config.login}' \
-        https://api.github.com/authorizations`
-      data = JSON.parse(res) rescue nil
-
-      _token = data.try(:[], 'token')
-      if _token.blank?
-        puts 'invalid password'
-        exit!
-      end
-      File.open(token_file, 'wb') { |f| f.write _token }
+          --data '{"scopes":["repo"]}' \
+          --request POST -u '#{AnythingHub.config.login}' \
+          https://api.github.com/authorizations`
+      _token = (JSON.parse(res) rescue nil).try(:[], 'token')
+      raise StandardError, 'invalid password' if _token.blank?
+      cache.write 'authorizations', _token
     end
-    @token ||= File.open(token_file).read.chomp
+    @token ||= _token
   end
 
   def cache
