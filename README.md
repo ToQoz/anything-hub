@@ -3,6 +3,8 @@
 Anything interface for github.
 Filter response of Github api with anything interface and open selected one in browser.
 
+![Introduction of anything-hub](https://dl.dropbox.com/u/7808873/introduction_of_anything-hub.gif)
+
 ## Installation
 
 Add this line to your application's Gemfile:
