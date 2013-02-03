@@ -87,6 +87,8 @@ $ anything-hub COMMANDS [OPTIONS]
 available COMMANDS are
   starred:USER_NAME
   search:SEARCH_KEYWORD
+  cache:COMMAND (e.g. cache:search:rails)
+  token
 
     -s, --system_command      system command name. eg. xdg-open, open (default is open)
     -c, --cache               use cache. yes or no. (default is yes)
