@@ -2,7 +2,9 @@ AnythingHub.command_set do
   command :starred do |input|
     _, username = input.split(':')
     fetch_from_api_or_cache(input) do
-      github.starred(username || github.client.login).map(&:html_url)
+      github.starred(username || github.client.login).map do |repo|
+        "(#{repo.full_name}) #{repo.description} [#{repo.html_url}]"
+      end
     end
   end
 
@@ -10,7 +12,7 @@ AnythingHub.command_set do
     _, query = input.split(':')
     fetch_from_api_or_cache(input) do
       github.search_repositories(query).map do |repo|
-        "http://github.com/#{repo.username}/#{repo.name}"
+        "(#{repo.username}/#{repo.name}) #{repo.description} [http://github.com/#{repo.username}/#{repo.name}]"
       end
     end
   end

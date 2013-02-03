@@ -17,7 +17,7 @@ module AnythingHub
 
     if (results = command(input))
       cache.write(input, results.to_json)
-      system("#{options[:s]} #{_anything_(results)}")
+      system("#{options[:s]} #{_anything_(results).gsub(/.*\[(.*)\]/, '\1')}")
     end
   end
 
