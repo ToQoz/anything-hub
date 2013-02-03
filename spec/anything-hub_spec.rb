@@ -17,10 +17,6 @@ describe AnythingHub do
       it 'should set login' do
         AnythingHub.config.login.should eq('ToQoz')
       end
-
-      it 'should set password' do
-        AnythingHub.config.password.should eq('dummy')
-      end
     end
   end
 end

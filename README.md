@@ -33,7 +33,6 @@ Put config file.
 # in ~/.anything-hubrc
 AnythingHub.configure do |c|
   c.login "username"    # github username
-  c.password "password" # github password
 end
 ```
 

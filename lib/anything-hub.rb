@@ -29,7 +29,35 @@ module AnythingHub
     require "anything-hub/commands"
   end
 
+  def app_dir
+    dir = File.expand_path('~/.anything-hub')
+    Dir.mkdir(dir) unless Dir.exists? dir
+    @app_dir ||= dir
+  end
+
+  def token_file
+    @token_file ||= File.join(app_dir, 'token')
+  end
+
+  def token
+    unless File.exists?(token_file)
+      res = `curl \
+        --data '{"scopes":["repo"]}' \
+        --request POST -u '#{AnythingHub.config.login}' \
+        https://api.github.com/authorizations`
+      data = JSON.parse(res) rescue nil
+
+      _token = data.try(:[], 'token')
+      if _token.blank?
+        puts 'invalid password'
+        exit!
+      end
+      File.open(token_file, 'wb') { |f| f.write _token }
+    end
+    @token ||= File.open(token_file).read.chomp
+  end
+
   def cache
-    @cache ||= ActiveSupport::Cache::FileStore.new('/tmp/anything-hub.log')
+    @cache ||= ActiveSupport::Cache::FileStore.new(File.join(app_dir, 'cache'))
   end
 end

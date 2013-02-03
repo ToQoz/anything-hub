@@ -2,13 +2,13 @@ module AnythingHub
   extend self
 
   class Github
-    def initialize(login, password)
+    def initialize(login, oauth_token)
       @login = login
-      @password = password
+      @oauth_token = oauth_token
     end
 
     def client
-      @client ||= Octokit::Client.new :login => @login, :password => @password, :auto_traversal => true
+      @client ||= Octokit::Client.new :login => @login, :oauth_token => @oauth_token, :auto_traversal => true
     end
 
     def method_missing(action, *args)
@@ -21,6 +21,6 @@ module AnythingHub
   end
 
   def github
-    @github ||= Github.new(config.login, config.password)
+    @github ||= Github.new(config.login, token)
   end
 end
