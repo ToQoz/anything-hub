@@ -33,6 +33,7 @@ Put config file.
 # in ~/.anything-hubrc
 AnythingHub.configure do |c|
   c.login "username"    # github username
+  c.token "token"       # github oauth token. this is optional. (If you use in non-interactive env, I recommend to set this.)
 end
 ```
 
@@ -65,6 +66,17 @@ If you get token for github api(e.g. for cron)
 
 ```sh
 $ anything-hub token
+```
+
+## Tips
+
+Periodically cache. For example for the often searched keyword and your starred.
+**If try it, I recommend to put token to your `~/anything-hubrc`. You can get token by `$ anything-hub token`**
+
+```sh
+$ crontab -e
+05 12 * * * /Users/toqoz/.rbenv/shims/anything-hub cache:search:rails >> /tmp/anything-hub.cron.log 2>> /tmp/anything-hub.cron.error.log
+05 1 * * * /Users/toqoz/.rbenv/shims/anything-hub cache:starred:ToQoz >> /tmp/anything-hub.cron.log 2>> /tmp/anything-hub.cron.error.log
 ```
 
 ## Help
