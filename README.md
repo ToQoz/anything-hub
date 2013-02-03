@@ -3,8 +3,6 @@
 Anything interface for github.
 Filter response of Github api with anything interface and open selected one in browser.
 
-**This has not uploaded to rubygems yet**
-
 ## Installation
 
 Add this line to your application's Gemfile:
