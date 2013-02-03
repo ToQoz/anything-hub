@@ -36,10 +36,10 @@ module AnythingHub
   end
 
   def token
-    unless (_token = cache.read('authorizations:token'))
+    unless (_token = cache.read('authorizations:token') || config.token)
       res = `curl \
         --data '{"scopes":["repo"]}' \
-        --request POST -u '#{AnythingHub.config.login}' \
+        --request POST -u '#{config.login}' \
         https://api.github.com/authorizations`
       _token = (JSON.parse(res) rescue nil).try(:[], 'token')
       raise StandardError, 'invalid password' if _token.blank?

@@ -61,6 +61,12 @@ If you want to do only cache
 $ anything-hub cache:starred:ToQoz
 ```
 
+If you get token for github api(e.g. for cron)
+
+```sh
+$ anything-hub token
+```
+
 ## Help
 ```sh
 ✘╹◡╹✘  $ anyting-hub --help

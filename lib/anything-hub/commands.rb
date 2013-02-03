@@ -15,6 +15,11 @@ AnythingHub.command_set do
     end
   end
 
+  command :token do |input|
+    puts token
+    nil
+  end
+
   command :cache do |input|
     _, target_cmd = input.split(':', 2)
     cache.write target_cmd, nil
